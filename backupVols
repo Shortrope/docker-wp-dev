@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cont_id=$1
+backup_target=$2
+backup_source=`docker inspect -f '{{range .Mounts}}{{.Source}}{{end}}' $cont_id`
+
+echo $cont_id
+echo $backup_source
+echo $backup_target
+
+rsync -av $backup_source/ $backup_target/
